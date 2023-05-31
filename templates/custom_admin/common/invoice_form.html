@@ -1,0 +1,53 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %} Update Enquiries {% endblock title %}
+{% block content %}
+
+<div class="content_wrapper scroll">
+  <div class="container-fluid">
+    <h1 class="main_head">Invoice Form</h1>
+    <form method="POST" action="{% url 'invoice' %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <label for="name">Name:</label>
+                <input id="name" class="form-control" name="name" value="{{ enquirer_name }}" readonly>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-6 col-12">
+                <label for="amount_received">Amount Received:</label>
+                <input id="amount_received" class="form-control" name="amount_received">{{ enquiries.comment }}</input>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-6 col-12">
+                <label for="amount_type">Amount Type:</label>
+                <select id="amount_type" class="form-control" name="amount_type">
+                    <option value="Cash">Cash</option>
+                    <option value="UPI">UPI</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-6 col-12">
+                <label for="technology">Technology:</label>
+                <select id="technology" class="form-control" name="technology">
+                    <option value="Python">Python</option>
+                    <option value="ReactJS">ReactJS</option>
+                    <option value="QA">QA</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12 col-12"> 
+                <button type="submit" class="btn btn-same-add">Submit</button>
+            </div>
+            
+        </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block content %}
+{% block body %}
+
+    <div class="content_wrapper scroll">
+      <div class="container-fluid"> 
+ <h1 class="main_head">Profile</h1>
+    <div class="profile_box">
+     
+        <div class="pt-4">
+          {% for user in data %}
+          <div class="row">
+            <div class="col-md-2">
+{% if user.profile_pic %}
+          <img src="{{user.profile_pic.url}}" alt="Profile" class="rounded-circle">
+          {% else %}
+          <img src="{%static 'custom_admin/img/dummy-profile-pic-male1.jpg' %}" alt="Default Image" class="rounded-circle">
+          {% endif %}
+            </div>
+            <div class="col-md-10">
+                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
+             
+              <div class="profile-content">
+                <ul class="p-0 mt-3">
+                  <li>Full Name: <span>{{ user.name }}</span></li>
+                  <li>
+                    Email:
+                    <span>{{ user.email }}</span>
+                  </li>
+                  <li>
+                    Contact:
+                    <span>{{ user.contact }}</span>
+                  </li>
+                </ul>
+              </div>
+          {% endfor %}
+        </div>
+            </div>
+          </div>
+            <!-- <h4 style="font-style: bold">{{ user.email }}</h4>
+            <br> -->
+         
+      </div>
+    
+  </div>
+</div>
+</div>
+<style>
+
+img.rounded-circle {
+  max-width: 100px;
+}
+
+</style>
+{% endblock body %}
+{% endblock content %}
+
+

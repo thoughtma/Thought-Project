@@ -1,0 +1,114 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %}Trainer/Instructor{% endblock title %}
+
+{% block content %}
+
+<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" >Update Trainer/Infffstructor</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    {% comment %} <div class="modal-body  mx-3">
+        <form action="" method="post">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" value="{{ form.specialization }}" >
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="Number">Mobile Number:</label>
+                <input type="text" class="form-control" id="Number" value="{{ form.user.contact }} " />
+              </div>
+            </div>
+    
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="Email">Email :</label>
+                <input type="text" class="form-control" id="Email" value="{{ form.user.email }} " />
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="text">Specialization: </label>
+                <input type="text" class="form-control" id="text" value="{{ form.specialization }} " />
+              </div>
+            </div>
+    
+            
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="email" class="form-control" id="inputEmail4" placeholder="Password">
+              </div>
+    
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="inputPassword4" placeholder="Confirm Password">
+              </div>
+            </div>
+            </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div> {% endcomment %}
+  </div>
+</div>
+</div>
+
+
+    <!-- Begin Page Content -->
+    <div class="content_wrapper scroll"> 
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="main_head">Trainer Detail</h1>
+            <a href="{% url 'trainer-update' trainer.id %}" class="d-none d-sm-inline-block btn btn-same-add"> Update Trainer</a>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-md-4 mb-4">
+              <form>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" id="name" value="{{ trainer.name }} "readonly>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="Number">Mobile Number:</label>
+                            <input type="text" class="form-control" id="Number" value="{{ trainer.contact }} "readonly>
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="Email">Email:</label>
+                          <input type="text" class="form-control" id="Email" value="{{ trainer.email }}" readonly>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="input">Specialization</label>
+                            <input type="text" class="form-control" id="input" value="{{ trainer.specialization }}" readonly>
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="Number">Experience</label>
+                                <input type="text" class="form-control" id="Number" value="{{ trainer.experience }}" readonly>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="inputAddress">Address</label>
+                                <input type="text" class="form-control" id="inputAddress" value="{{trainer.address}}" readonly>
+                              </div>
+                            </div>
+              </form>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %} Update Course {% endblock title %}
+
+
+{% block content %}
+	<h1>Update Course</h1>
+	<form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{form.media}}
+        <input type="submit" value="Update Course">
+    </form>
+{% endblock %}

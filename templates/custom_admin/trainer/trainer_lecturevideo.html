@@ -1,0 +1,106 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %}Lecture-Video{% endblock title %}
+
+{% block content %}
+
+<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" >Add New Lecture video</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body  mx-3">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          
+        </div>
+    <div class="modal-footer d-flex justify-content-center">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      <button type="submit" class="btn btn-primary">Upload video</button>
+    </form>
+    </div>
+  </div>
+</div>
+</div>
+
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="main_head">All Lecture Video:</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-same-add" data-toggle="modal" data-target="#modalContactForm"> Add Lecturer</a>
+        </div>
+
+        <nav class="navbar navbar-light bg-light">
+            <form class="form-inline">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search video.." aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </nav>
+
+          <div class="container">
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible">       
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{message}}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-md-6 mb-4">
+                <div class=" table-responsive py-5 px-5">
+                    <table class="table  table-hover">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">S. No.</th>
+                          <th scope="col">Course Name</th>
+                          <th scope="col">Trainer</th>
+                          <th scope="col">Syllabus</th>
+                          <th scope="col">Title</th>
+                          <th scope="col">video</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% if lecturevideos %}
+                        {% for lecture_video in lecturevideos %}
+                        
+                        <tr><i class="fa-solid fa-eye"></i>
+                          <th scope="row">{{lecture_video.id}}</th>
+                          <td>{{lecture_video.course.course_name}}</td>
+                          <td>{{lecture_video.trainer.user}}</td>
+                          <td>{{lecture_video.syllabus.course_name}}</td>
+                          <td>{{lecture_video.title}}</td>
+                            <td>{% if lecture_video.lecture_video %}
+                                <a href="{% url 'play_video' lecture_video.pk %}">Play video</a>
+                                {% else %}
+                                Video not available
+                                {% endif %}</td>
+                          <td><ul class="action_tab_list">
+                            <li><a href="{% url 'lecturevideo-detail-view' lecture_video.id %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                            class="fas fa-eye fa-sm text-white-50"></i></a></li>
+                            <li><a href="{% url 'trainer-lecturevideo-update' lecture_video.id %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-edit fa-sm text-white-50"></i></a></li>
+                            <li><a href="{% url 'trainer-lecturevideo-delete' lecture_video.id %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                    class="fas fa-trash fa-sm text-white-50"></i></a></li>
+                            <li><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                        class="fas fa-download fa-sm text-white-50"></i></a></li>
+                        </ul></td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                      </tbody>
+                    </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

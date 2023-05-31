@@ -1,0 +1,149 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %}UsersDetailView{% endblock title %}
+
+{% block content %}
+    <!-- <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >Add New User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body  mx-3">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="inputEmail4" placeholder="Name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="password" class="form-control" id="inputPassword4" placeholder="Mobile Number">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="inputPassword4" placeholder="Add Permission">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="email" class="form-control" id="inputEmail4" placeholder="Password">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="inputPassword4" placeholder="Confirm Password">
+                            </div>
+                        </div>
+
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Add New user</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Users Detail:</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modalContactForm"><i
+                    class="fas fa-book-reader fa-sm text-white-50"></i> Update User</a>
+        </div> -->
+
+        <div class="row">
+            <div class="col-xl-12 col-md-4 mb-4">
+                <div class=" table-responsive py-5 px-5">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Course Name :</label>
+                                <p id="course_name" class="form-control-plaintext">{{ course.course_name }}</p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="input">Title :</label>
+                                <p id="title" class="form-control-plaintext">{{ course.title|safe }}</p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Description :</label>
+                                <p id="description" class="form-control-plaintext">{{ course.description|safe }}</p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Rating :</label>
+                                <p id="rating" class="form-control-plaintext">{{ course.rating }}</p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Students Enrolled :</label>
+                                <p id="students_enrolled" class="form-control-plaintext">{{ course.students_enrolled }}</p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Job Guarantee :</label>
+                                <p id="job_guarantee" class="form-control-plaintext">{{ course.job_guarantee }}</p>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Online Classes :</label>
+                                <p id="online_classes" class="form-control-plaintext">{{ course.online_classes }}</p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Offline Classes :</label>
+                                <p id="offline_classes" class="form-control-plaintext">{{ course.offline_classes }}</p>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Duration :</label>
+                                <p id="duration" class="form-control-plaintext">{{ course.duration }}</p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Skills :</label>
+                                <p id="skills" class="form-control-plaintext">{{ course.skills }}</p>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Start Date :</label>
+                                <p id="start_date" class="form-control-plaintext">{{ course.start_date }}</p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Language :</label>
+                                <p id="language" class="form-control-plaintext">{{ course.language }}</p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Category :</label>
+                                <p id="category" class="form-control-plaintext">{{ course.category }}</p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Course Image:</label>
+                                {% if course.course_image %}
+                                <a href="{{ course.course_image.url }}" target="_blank">{{ course.course_image }}</a>
+                                {% else %}
+                                <p>No Image Available</p>
+                                {% endif %}
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

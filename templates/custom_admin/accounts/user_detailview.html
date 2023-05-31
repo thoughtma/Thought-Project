@@ -1,0 +1,80 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %}UsersDetailView{% endblock title %}
+
+{% block content %}
+
+<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" >Update User</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update User">
+    </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="content_wrapper scroll">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="main_head">Users Detail</h1>
+            <a href="{% url 'user_update' user.id %}" class="d-none d-sm-inline-block btn-same-add" > Update User</a>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-12 col-md-4 mb-4">
+            <form>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Name</label>
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="{{user.name}}" readonly>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="input">Mobile Number</label>
+                    <input type="text" class="form-control" id="inputPassword4" placeholder="{{user.contact}}" readonly>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label for="inputEmail4">Email</label>
+                      <input type="email" class="form-control" id="inputEmail4" placeholder="{{user.email}}" readonly>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Designation</label>
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="{{user.designation}}" readonly>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label for="inputEmail4">Permission</label><br>
+                        <div class="form-control" style="height:auto;">
+                          {% for permission in permissions %}
+                        <span>{{ permission }}</span><br>
+                        {% endfor %}
+                        </div>
+                      
+                      <!-- <input type="email" class="form-control" id="inputEmail4" placeholder="{{user.user_permissions}}" readonly> -->
+                  </div>
+                </div>
+            </form> 
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}

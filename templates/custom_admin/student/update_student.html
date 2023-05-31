@@ -1,0 +1,51 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %}Add-Students{% endblock title %}
+
+{% block content %}
+
+<div class="content_wrapper scroll"> 
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="main_head">Update Student Details</h1>
+  </div>
+  
+
+  <div class="container">
+        {% if form.errors %}
+          <div class="alert alert-danger">
+            <h4>Errors:</h4>
+            <ul>
+            {% for field, errors in form.errors.items %}
+              <li>{{ field }}: {{ errors|join:", " }}</li>
+            {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+    </div>
+
+    <div class="row">
+      <div class="col-xl-12 col-md-4 mb-4">
+        <div class="form-detail">
+        <form action="" method="post" novalidate>
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div class="modal-footer d-flex justify-content-start">
+            <button onclick="myFunction()" type="submit" class="btn btn-same-add">Update</button>
+            <button type="submit" class="btn btn-same-border ml-3" href="#">Cancel</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+  function myFunction() {
+    alert("Student Updated Succesfully!");
+  }
+  </script>
+{% endblock content %}

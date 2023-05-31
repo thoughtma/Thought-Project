@@ -1,0 +1,411 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %} Queries{% endblock title %}
+
+{% block content %}
+
+<div class="page-content page-container" id="page-content">
+    <div class="container-fluid"> 
+        <div class="row d-flex justify-content-start">
+<div class="col-md-12">
+            <div class="card card-bordered">
+              <div class="card-header">
+                <h4 class="card-title"><strong>Queries</strong></h4>
+              </div>
+
+
+              <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:370px !important;">
+                {% for i in reply_threads %}
+                <div class="media media-chat">
+                   <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
+                   <p class="mr-2 pt-2 d-none d-lg-inline text-black small">{{query.student.user.name}}</p>
+                  
+                </div>
+                <div class="media-body media-left1">
+                    <p>{{i.query}}</p>
+                 
+                  </div>
+
+                <!-- <div class="media media-meta-day"></div> -->
+                {% if i.response %}
+                <div class="media media-chat media-chat-reverse">
+                    <p class="mr-2 d-none d-lg-inline text-black small">{{request.user.name}}</p>
+                 
+                  <p class="mr-2 d-none d-lg-inline text-black small">{{response_by}}</p>
+                  
+                </div>
+                 <div class="media-body media-chat-reverse">
+                 
+                    <p>{{i.response}}</p>                                    
+                   
+                  </div>
+                {% endif %}
+
+            
+                {% endfor %}
+              <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 0px; right: 2px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div></div></div>
+
+              <div class="publisher bt-1 border-light">
+                <form method="POST" action="{% url 'query_detail' query_id=query.id %}">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {% if field.name == 'response' %}
+                        <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
+                        <p class="mr-2 d-none d-lg-inline text-black small">{{query.trainer.user.name}}</p>
+                           
+                            <input type="text" name="{{ field.name }}" class="messege_input" placeholder="Write your response here">
+                            <input type="text" name="reply_id" value="{{last_reply.id}}" hidden>
+                            
+                        {% endif %}
+                    {% endfor %}
+                    <button type="submit" class="publisher-btn text-info"><i class="fa fa-paper-plane"></i></button>
+                </form>
+              </div>
+             </div>
+          </div>
+          </div>
+          </div>
+          
+          <style>
+            .card-bordered {
+                border: 1px solid #ebebeb;
+            }
+            
+            .card {
+                border: 0;
+                border-radius: 0px;
+                margin-bottom: 30px;
+                -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.03);
+                box-shadow: 0 2px 20px rgb(0 0 0 / 42%);
+                -webkit-transition: .5s;
+                transition: .5s;
+            }
+            
+            .padding {
+                padding: 3rem !important
+            }
+            
+            body {
+                background-color: #f9f9fa
+            }
+            
+            .card-header:first-child {
+                border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+            }
+            
+            
+            .card-header {
+                display: -webkit-box;
+                display: flex;
+                -webkit-box-pack: justify;
+                justify-content: space-between;
+                -webkit-box-align: center;
+                align-items: center;
+                padding: 15px 20px;
+                background-color: transparent;
+                border-bottom: 1px solid rgba(77,82,89,0.07);
+            }
+            
+            .card-header .card-title {
+                padding: 0;
+                border: none;
+                color: white;
+            }
+            
+            h4.card-title {
+                font-size: 17px;
+            }
+            
+            .card-header>*:last-child {
+                margin-right: 0;
+            }
+            
+            .card-header>* {
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+            
+            .btn-secondary {
+                color: #4d5259 !important;
+                background-color: #e4e7ea;
+                border-color: #e4e7ea;
+                color: #fff;
+            }
+            
+            .btn-xs {
+                font-size: 11px;
+                padding: 2px 8px;
+                line-height: 18px;
+            }
+            .btn-xs:hover{
+                color:#fff !important;
+            }
+            
+            
+            
+            
+            .card-title {
+                font-family: Roboto,sans-serif;
+                font-weight: 300;
+                line-height: 1.5;
+                margin-bottom: 0;
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(77,82,89,0.07);
+            }
+            
+            
+            .ps-container {
+                position: relative;
+            }
+            
+            .ps-container {
+                -ms-touch-action: auto;
+                touch-action: auto;
+                overflow: hidden!important;
+                -ms-overflow-style: none;
+            }
+            
+            .media-chat {
+                padding-right: 64px;
+                margin-bottom: 0;
+            }
+            
+            .media {
+                padding: 16px 12px;
+                -webkit-transition: background-color .2s linear;
+                transition: background-color .2s linear;
+            }
+            
+            .media .avatar {
+                flex-shrink: 0;
+            }
+            
+            .avatar {
+                position: relative;
+                display: inline-block;
+                width: 36px;
+                height: 36px;
+                line-height: 36px;
+                text-align: center;
+                border-radius: 100%;
+                background-color: #f5f6f7;
+                color: #8b95a5;
+                text-transform: uppercase;
+            }
+            
+            .media-body {
+                -webkit-box-flex: initial;
+                flex: initial;
+                display: table;
+            }
+            
+            .media-body {
+                min-width: 0;
+                margin: 0px 20px;
+            }
+
+            .media-body.media-left1{
+                padding-right: 40px;
+            }
+            
+            .media-body p {
+                position: relative;
+                padding: 6px 8px;
+                margin: 4px 0;
+                background-color: #f5f6f7;
+                border-radius: 3px;
+                font-weight: 400 !important;
+                text-shadow: 0 0 1px #00000045;
+                color: #444444;
+                font-size: 14px;
+            }
+            
+            .media>* {
+                margin: 0 8px;
+            }
+            
+            .media-body p.meta {
+                background-color: transparent !important;
+                padding: 0;
+                opacity: .8;
+            }
+            
+            .media-meta-day {
+                -webkit-box-pack: justify;
+                justify-content: space-between;
+                -webkit-box-align: center;
+                align-items: center;
+                margin-bottom: 0;
+                color: #8b95a5;
+                opacity: .8;
+                font-weight: 400;
+            }
+            
+            .media {
+                padding: 16px 12px;
+                -webkit-transition: background-color .2s linear;
+                transition: background-color .2s linear;
+            }
+            
+            .media-meta-day::before {
+                margin-right: 16px;
+            }
+            
+            .media-meta-day::before, .media-meta-day::after {
+                content: '';
+                -webkit-box-flex: 1;
+                flex: 1 1;
+                border-top: 1px solid #ebebeb;
+            }
+            
+            .media-meta-day::after {
+                content: '';
+                -webkit-box-flex: 1;
+                flex: 1 1;
+                border-top: 1px solid #ebebeb;
+            }
+            
+            .media-meta-day::after {
+                margin-left: 16px;
+            }
+            
+            .media-chat-reverse {
+                display: flex;
+                padding-right: 0px;
+                padding-left: 40px;
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: reverse;
+                flex-direction: row-reverse;
+                padding-bottom: 10px !important;
+            }
+            
+            .media-chat {
+                padding-right: 64px;
+                margin-bottom: 0;
+            }
+            
+            .media {
+                padding: 16px 12px;
+                -webkit-transition: background-color .2s linear;
+                transition: background-color .2s linear;
+            }
+            
+            .media-chat-reverse.media-body p {
+                float: right;
+                clear: right;
+                background-color: #48b0f7;
+                color: #fff;
+                text-align: right;
+            }
+            
+            .media-chat .media-body p {
+                position: relative;
+                padding: 6px 8px;
+                margin: 4px 0;
+                background-color: #f5f6f7;
+                border-radius: 3px;
+                font-weight: 200;
+            }
+            
+            
+            .border-light {
+                border-color: #f1f2f3 !important;
+            }
+            
+            .bt-1 {
+                border-top: 1px solid #ebebeb !important;
+            }
+            
+            .publisher {
+                position: relative;
+                display: -webkit-box;
+                display: flex;
+                -webkit-box-align: center;
+                align-items: center;
+                padding: 12px 20px;
+                background-color: #f9fafb;
+            }
+            
+            .publisher>*:first-child {
+                margin-left: 0;
+            }
+            
+            .publisher>* {
+                margin: 0 8px;
+            }
+            
+            .publisher-input {
+                -webkit-box-flex: 1;
+                flex-grow: 1;
+                border: none;
+                outline: none !important;
+                background-color: transparent;
+            }
+            
+            button, input, optgroup, select, textarea {
+                font-family: Roboto,sans-serif;
+                font-weight: 300;
+            }
+            
+            .publisher-btn {
+                background-color: transparent;
+                border: none;
+                color: #8b95a5;
+                font-size: 16px;
+                cursor: pointer;
+                overflow: -moz-hidden-unscrollable;
+                -webkit-transition: .2s linear;
+                transition: .2s linear;
+            }
+            
+            .file-group {
+                position: relative;
+                overflow: hidden;
+            } 
+            
+            .publisher-btn {
+                background-color: transparent;
+                border: none;
+                color: #cac7c7;
+                font-size: 16px;
+                cursor: pointer;
+                overflow: -moz-hidden-unscrollable;
+                -webkit-transition: .2s linear;
+                transition: .2s linear;
+                position: absolute;
+    right: 44px;
+    top: 20px;
+            } 
+            
+            .file-group input[type="file"] {
+                position: absolute;
+                opacity: 0;
+                z-index: -1; 
+                width: 20px;
+            }
+            
+            .text-info {
+                color: #48b0f7 !important;
+            }
+        
+            .publisher form {
+                width: 100%;
+            }
+            .publisher form input.messege_input, .publisher form input.messege_input:focus {
+                   width: 94%;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    outline: none;
+            }
+            .card-header {
+                background: radial-gradient(100% 585.54% at 0% 13.89%, #6292FD 0%, #6C52EE 44.88%, #915DFA 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+            }
+        </style>
+        
+          </div>
+
+
+{% endblock content %}
+

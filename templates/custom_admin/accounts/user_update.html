@@ -1,0 +1,40 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %} Update User {% endblock title %}
+
+{% block content %}
+
+
+<div class="content_wrapper scroll update-user-form">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+<h1 class="main_head mb-4">Update User</h1>
+        <div class="row">
+          <div class="col-xl-12 col-md-4 mb-4">
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <h6>Update Permission :</h6>
+                {% for group in all_groups %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="groups" value="{{ group.name }}" {% if group in selected_groups %}checked{% endif %}>
+                    <label class="form-check-label">{{ group.name }}</label>
+                </div>
+                {% endfor %}
+
+                <input onclick="myFunction()" class="btn-same-add d-block mt-3" type="submit" value="Update User">
+            </form>
+
+    </div>
+    </div>
+    </div>
+    </div>
+    <script>
+        function myFunction() {
+          alert("User Update Succesfully!");
+        }
+        </script>
+{% endblock content %}

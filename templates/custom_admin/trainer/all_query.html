@@ -1,0 +1,74 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %}All Queries{% endblock title %}
+
+{% block content %}
+
+    <div class="content_wrapper scroll">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="main_head">All Queries</h1>
+
+            </div>
+
+            <div class="container">
+                {% for message in messages %}
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12 col-md-6 mb-4">
+                    <div class="table-responsive table_same_div" style="width: 100%">
+                        <table id="example" class="display">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">S. No.</th>
+                                    <th scope="col">Query Headline</th>
+                                    <th scope="col">Query Message</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if queries %}
+                                {% for query in queries %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ query.queries.headline|truncatechars:50|safe }}</td>
+                                    <td>{{ query.query|truncatechars:20|safe }}</td>
+
+                                    <td>
+                                        <ul class="action_tab_list">
+                                            <li>
+                                                <a href="{% url 'query_detail' query_id=query.queries.id %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                                    <i class="fas fa-eye fa-sm text-white-50"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'query_detail' query_id=query.queries.id %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                                    <i class="fas fa-reply-all text-white-50"></i>
+                                                </a>
+                                            </li>
+                                             <!--<li>
+                                                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                                    <i class="fas fa-trash text-white-50"></i>
+                                                </a>
+                                            </li>-->
+                                        </ul>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

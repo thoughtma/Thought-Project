@@ -1,0 +1,13 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %} Update Question {% endblock title %}
+
+
+{% block content %}
+	<h1>Update Question</h1>
+	<form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update Question">
+    </form>
+{% endblock %}

@@ -1,0 +1,26 @@
+name: intern-actions
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build1:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: cloning source code
+        uses: actions/checkout@v3
+      - name: setuping python version
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+      - name: installing dependencies by mridul
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: testing .............
+        run : python3 manage.py test
+      - name: Deploying.............
+        run : echo Deployed.........
+          

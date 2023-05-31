@@ -1,0 +1,295 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %}dashboard{% endblock title %}
+
+
+{% block content %}
+
+<div class="content_wrapper scroll">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="main_head">Dashboard</h1>
+
+        </div>
+
+        <!-- Content Row -->
+        <div class="row">
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card dash-card h-100 py-2 light-orange">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="mb-1">
+                                    <h4>Students</h4>
+                                </div>
+                                <p>{{students}}</p>
+                            </div>
+                            <a href="#" class="ArrowIcon orangebg">
+                                <img src="{% static 'custom_admin/img/arrow-right.png' %}"  alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card light-pink dash-card h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="mb-1">
+                                    <h4>Users</h4>
+                                </div>
+                                <p>{{users}}</p>
+                            </div>
+                            <a href="#" class="ArrowIcon pinkbg">
+                                <img src="{% static 'custom_admin/img/arrow-right.png' %}"  alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card dash-card light-green h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="mb-1">
+                                    <h4>Courses</h4>
+                                </div>
+                                <p>{{courses}}</p>
+                            </div>
+                            <a href="#" class="ArrowIcon greenbg">
+                                <img src="{% static 'custom_admin/img/arrow-right.png' %}"  alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card dash-card light-blue h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                             <div class="col mr-2">
+                                <div class="mb-1">
+                                    <h4>Addons</h4>
+                                </div>
+                                <p>03</p>
+                            </div>
+                            <a href="#" class="ArrowIcon bluebg">
+                                <img src="{% static 'custom_admin/img/arrow-right.png' %}"  alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card dash-card h-100 py-2 light-purple">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="mb-1">
+                                    <h4>Queries unanswered</h4>
+                                </div>
+                                <p>{{unanswered_queries}}</p>
+                            </div>
+                            <a href="#" class="ArrowIcon purplebg">
+                                <img src="{% static 'custom_admin/img/arrow-right.png' %}"  alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card light-skyblue dash-card h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="mb-1">
+                                    <h4>Enquires form</h4>
+                                </div>
+                                <p>{{enquiry_forms}}</p>
+                            </div>
+                            <a href="#" class="ArrowIcon skybluebg">
+                                <img src="{% static 'custom_admin/img/arrow-right.png' %}"  alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card dash-card light-red h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="mb-1">
+                                    <h4>Contact us forms</h4>
+                                </div>
+                                <p>{{contact_forms}}</p>
+                            </div>
+                            <a href="#" class="ArrowIcon redbg">
+                                <img src="{% static 'custom_admin/img/arrow-right.png' %}"  alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card dash-card light-yellow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                             <div class="col mr-2">
+                                <div class="mb-1">
+                                    <h4>Reviews</h4>
+                                </div>
+                                <p>{{reviews}}</p>
+                            </div>
+                            <a href="#" class="ArrowIcon yellowbg">
+                                <img src="{% static 'custom_admin/img/arrow-right.png' %}"  alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card dash-card h-100 py-2 light-red">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="mb-1">
+                                    <h4>Certificates</h4>
+                                </div>
+                                <p>{{certificates}}</p>
+                            </div>
+                            <a href="#" class="ArrowIcon redbg">
+                                <img src="{% static 'custom_admin/img/arrow-right.png' %}"  alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card light-green dash-card h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="mb-1">
+                                    <h4>Trainers/instructors</h4>
+                                </div>
+                                <p>{{trainers}}</p>
+                            </div>
+                            <a href="#" class="ArrowIcon greenbg">
+                                <img src="{% static 'custom_admin/img/arrow-right.png' %}"  alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card dash-card light-blue h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="mb-1">
+                                    <h4>Payment received</h4>
+                                </div>
+                                <p>{{payments}}</p>
+                            </div>
+                            <a href="#" class="ArrowIcon bluebg">
+                                <img src="{% static 'custom_admin/img/arrow-right.png' %}"  alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card dash-card light-blue h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                             <div class="col mr-2">
+                                <div class="mb-1">
+                                    <h4>Payment pending</h4>
+                                </div>
+                                <p>35,000</p>
+                            </div>
+                            <a href="#" class="ArrowIcon purplebg">
+                                <img src="{% static 'custom_admin/img/arrow-right.png' %}"  alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-md-7 col-12">
+                <div class="BgDiv">
+                    <h3>Payment</h3>
+                </div>
+            </div>
+            <div class="col-md-5 col-12">
+                <div class="BgDiv">
+                    <h3>Total payment 50,000</h3>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright @ 2023, All Rights Reserved. Thoughtwin</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="{% url 'admin_logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}

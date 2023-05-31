@@ -1,0 +1,42 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %} Update Enquiries {% endblock title %}
+{% block content %}
+
+<div class="content_wrapper scroll">
+  <div class="container-fluid">
+<h1 class="main_head">Update Enquiries</h1>
+<form method="POST" action="{% url 'enquiryforms_update' enquiries.id %}">
+    {% csrf_token %}
+
+   <div class="row">
+    <div class="col-md-6 col-12">
+      <label for="comment">Comment:</label>
+      <textarea id="comment" class="form-control" name="comment" style="height:100px;">{{ enquiries.comment }}</textarea>
+    </div>
+    </div>
+
+    <div class="row mt-3">
+    <div class="col-md-6 col-12">
+    <label for="priority">Priority:</label>
+    <select id="priority" class="form-control" name="priority">
+      <option value="None" {% if enquiries.priority == 'None' %}selected{% endif %}>None</option>
+      <option value="Low" {% if enquiries.priority == 'Low' %}selected{% endif %}>Low</option>
+      <option value="Medium" {% if enquiries.priority == 'Medium' %}selected{% endif %}>Medium</option>
+      <option value="Top" {% if enquiries.priority == 'Top' %}selected{% endif %}>Top</option>
+      <option value="Paid" {% if enquiries.priority == 'Paid' %}selected{% endif %}>Paid</option>
+      
+    </select>
+  </div>
+  </div>
+
+  <div class="row mt-4">
+  <div class="col-md-12 col-12">
+    <button type="submit" class="btn btn-same-add">Update</button>
+    <button type="submit" class="btn btn-same-border ml-3" href="{% url 'enquiryforms_detail' enquiries.id%}">Cancel</button>
+    </div>
+  </div>
+  </form>
+  </div>
+  </div>
+  {% endblock %}

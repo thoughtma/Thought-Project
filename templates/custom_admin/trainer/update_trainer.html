@@ -1,0 +1,63 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %}UpdateTrainer{% endblock title %}
+
+{% block content %}
+    <!-- Display form errors here -->
+    {% comment %} {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        <strong>Oops!</strong> There was an error with your submission:
+        <ul>
+        {% for field_errors in form.errors.values %}
+            {% for error in field_errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %} {% endcomment %}
+
+
+<div class="content_wrapper scroll"> 
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="main_head">Update Trainer</h1>
+        </div>
+
+        {% if form.errors %}
+        <div class="alert alert-danger">
+            <h4>Errors:</h4>
+            <ul>
+            {% for field, errors in form.errors.items %}
+            <li>{{ field }}: {{ errors|join:", " }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+    
+    
+        <div class="row">
+            <div class="col-xl-12 col-md-4 mb-4">
+                <div class="form-detail">
+                   
+                    <form action="" method="post" novalidate>
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <div class="mt-4">
+                            <button onclick="myFunction()" type="submit" class="btn btn-same-add">Update</button>
+                            <a class="btn btn-same-border ml-3" href="{% url 'trainer-detail-view' id=trainer.id %}">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+<script>
+    function myFunction() {
+      alert("Trainer Update Succesfully !");
+    }
+    </script>
+{% endblock content %}

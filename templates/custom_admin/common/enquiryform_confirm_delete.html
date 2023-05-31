@@ -1,0 +1,17 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %} Delete Enquiry Form {% endblock title %}
+
+{% block content %}
+<div class="content_wrapper scroll"> 
+	<div class="container-fluid">
+	<h1 class="main_head">Confirm Delete</h1>
+	<p class="para-delete">Are you sure you want to delete this Enquiry Form "{{ enquiry.name }}"?</p>
+	<form method="POST" class="mt-4">
+		{% csrf_token %}
+		<input type="submit" class="btn btn-same-add" value="Delete">
+		<a href="{% url 'enquiryforms' %}" class="btn btn-same-border ml-3">Cancel</a>
+	</form>
+	</div>
+</div>
+{% endblock %}

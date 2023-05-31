@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Invoice</title>
+ <style>
+
+ </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body> 
+    <div style="text-align:center;padding:0px 20px;border:1px solid #333;">
+ <table style="padding:20px 0px 0px;border-bottom: none;">
+    <tbody> 
+    <tr style="padding:10px 10px 5px;border:none;">
+        <td style="width:300px;text-align: left;display: inline-block;">
+            <img src="static/custom_admin/img/logo.png" alt="Logo" width="156" height="38"/>
+        </td>
+       <td colspan="3" style="margin-bottom:0px;font-size:14px;width:200px;text-align:right;color:#817d7d;">Payment Receipt<br/> <span style="font-weight:600;display: inline-block;">{{ invoice_data.reciept_number }}</span></td>
+    </tr>
+
+     <tr style="padding:10px 10px 5px;border:none;">
+        <td width="400" style="text-align: left;font-size:14px;color:#000;font-weight:600;margin-bottom:10px;">
+            THOUGHTWIN IT SOLUTIONS PVT LTD <br/>
+            <span style="font-size:14px;color:#000;font-weight:400;margin-bottom:10px;">11 Sachidanand Nagar Annapurna Road, <br/> Indore (MP) - 452001 </span>
+        </td>
+       <td colspan="3" style="margin-bottom:0px;font-weight:600;font-size:14px;width:200px;text-align:right;vertical-align: top;">Date <br/> <span style="font-weight:400;display: inline-block;">{{ invoice_data.current_date }}</span></td>
+    </tr>
+    </tbody>
+    </table>
+
+    
+    <table style="width:100%;margin:0px auto 0px;padding:20px 0px 0px;border-top: none;">
+        <tbody>   
+    <tr style="border:none;">
+        <td width="15" style="border:none;"></td>
+        <td style="font-size:14px;margin-bottom:0px;text-align:left;padding:5px 10px 0px;width:180px;background-color:#f5f5f5;border:1px solid #333;">Name:</td>
+        <td colspan="3" style="padding:5px 10px 0px;font-size:14px;margin-bottom:0px;text-align:left;border:1px solid #333;border-left: none;background-color:#f5f5f5;">{{ invoice_data.name }}</td>
+        <td width="15" style="border:none;"></td>
+    </tr>
+    <tr style="border:none;">
+        <td width="15" style="border:none;"></td>
+        <td style="font-size:14px;margin-bottom:0px;text-align:left;padding:5px 10px 0px;width:180px;background-color:#f5f5f5;border:1px solid #333;">Amount Received:</td>
+        <td colspan="3" style="padding:5px 10px 0px;font-size:14px;margin-bottom:0px;text-align:left;border:1px solid #333;border-left: none;background-color:#f5f5f5;">{{ invoice_data.amount_received }}</td>
+        <td width="15" style="border:none;"></td>
+    </tr>
+    <tr style="border:none;">
+        <td width="15" style="border:none;"></td>
+        <td style="font-size:14px;margin-bottom:0px;text-align:left;padding:5px 10px 0px;width:180px;background-color:#f5f5f5;border:1px solid #333;">Amount Type:</td>
+        <td colspan="3" style="padding:5px 10px 0px;font-size:14px;margin-bottom:0px;text-align:left;border:1px solid #333;border-left: none;background-color:#f5f5f5;">{{ invoice_data.amount_type }}</td>
+        <td width="15" style="border:none;"></td>
+    </tr>
+    <tr style="border:none;">
+        <td width="15" style="border:none;"></td>
+        <td style="font-size:14px;margin-bottom:0px;text-align:left;padding:5px 10px 0px;width:180px;background-color:#f5f5f5;border:1px solid #333;">Technnology:</td>
+        <td colspan="3" style="padding:5px 10px 0px;font-size:14px;margin-bottom:0px;text-align:left;border:1px solid #333;border-left: none;background-color:#f5f5f5;">{{ invoice_data.technology }}</td>
+        <td width="15" style="border:none;"></td>
+    </tr>
+    <!-- <tr style="border-bottom:none;background-color:#f5f5f5;">
+      <td style="font-size:14px;margin-bottom:0px;text-align:left;padding:5px 10px 0px;width:200px;">Amount Received:</td>
+        <td colspan="3" style="padding:5px 10px 0px;font-size:14px;margin-bottom:0px;text-align:left;border-right: none;">{{ invoice_data.amount_received }}</td>
+    </tr>
+     <tr style="border-bottom:none;background-color:#f5f5f5;">
+        <td style="font-size:14px;margin-bottom:0px;text-align:left;padding:5px 10px 0px;width:200px;">Amount Type:</td>
+        <td colspan="3" style="padding:5px 10px 0px;font-size:14px;margin-bottom:0px;text-align:left;border-right: none;">{{ invoice_data.amount_type }}</td>
+    </tr>
+     <tr style="background-color:#f5f5f5;">
+        <td style="font-size:14px;margin-bottom:0px;text-align:left;padding:5px 10px 0px;width:200px;">Technnology:</td>
+        <td colspan="3" style="padding:5px 10px 0px;font-size:14px;margin-bottom:0px;text-align:left;border-right: none;">{{ invoice_data.technology }}</td>
+    </tr> -->
+  
+
+    
+    <!-- <tr style="padding:10px 10px 5px;">
+        <td style="list-style-type:none;font-size:14px;margin-bottom:0px;text-align:left;width:100%;">
+            Name: </td> <span style="font-weight: 500;padding-left:5px;display:inline-block;border-left: 1px solid #000;">{{ invoice_data.name }}</span>
+        </td>
+    </tr>
+    <tr style="padding:0px 10px 5px;border:none;"> 
+        <td style="list-style-type:none;font-size:14px;margin-bottom:0px;border:none;text-align:left;width:100%;">
+            Amount Received: <span style="font-weight: 500;padding-left:5px;">{{ invoice_data.amount_received }}</span>
+        </td>
+    </tr>
+    <tr style="padding:0px 10px 5px;border:none;">
+        <td style="list-style-type:none;font-size:14px;margin-bottom:0px;border:none;text-align:left;width:100%;">
+            Amount Type: <span style="font-weight: 500;padding-left:5px;">{{ invoice_data.amount_type }}</span>
+        </td>
+    </tr>
+    <tr style="padding:0px 10px 5px;border:none;">
+        <td style="list-style-type:none;font-size:14px;margin-bottom:0px;border:none;text-align:left;width:100%;">
+            Technnology: <span style="font-weight: 500;padding-left:5px;">{{ invoice_data.technology }}</span>
+        </td>
+    </tr> -->
+ 
+    <tr style="text-align:right;padding:10px 10px;border:none;width:500px;">
+        <td colspan="6" style="margin:0px 0px 0px;text-align:right;font-size:14px;font-weight:400;border:none;width:500px;">
+            Signature
+        </td>
+    </tr>
+    <tr style="border:none;">
+        <td style="border:none;padding:0px;"></td>
+    </tr>
+    
+    <tr style="text-align:right;padding:0px 10px 5px;border:none;width:500px;"> 
+         <td colspan="6" style="padding:0px 10px 5px;text-align:right;font-size:14px;font-weight:500;border:none;width:100%;">
+            {{ invoice_data.authority_name }}
+         </td>
+    </tr>
+
+
+    <tr style="text-align:right;padding:0px 10px;border:none;width:500px;">
+        <td colspan="6" style="padding:0px 10px 5px;text-align:right;font-size:14px;font-weight:500;border:none;width:100%;">
+            {{ invoice_data.designation }}
+        </td>
+    </tr>
+   
+    </tbody>
+</table>
+</div>
+</body>
+</html>
+
+

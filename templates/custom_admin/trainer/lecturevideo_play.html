@@ -1,0 +1,83 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %}Lecture-Video{% endblock title %}
+
+{% block content %}
+ <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">View Video on player:</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-md-6 mb-4">
+                {% if lecture_video.lecture_video %}
+                <video width="900" height="600" controls>
+                <source src="{{ lecture_video.lecture_video.url }}" type="{{ lecture_video.lecture_video.content_type }}">
+                Your browser does not support the video tag.
+                </video>
+                {% else %}
+                <p>Video not available.</p>
+                {% endif %}            
+            </div>
+        </div>
+    </div>
+
+    
+    {% comment %} <h1>Lecture Videos</h1>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Video</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for lecture_video in lecture_videos %}
+          <tr>
+            <td>{{ lecture_video.title }}</td>
+            <td>
+              {% if lecture_video.lecture_video %}
+              <a href="#" class="video-link" data-toggle="modal" data-target="#video-modal" data-video-url="{{ lecture_video.lecture_video.url }}">Play video</a>
+              {% else %}
+              Video not available
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  
+    <div class="modal fade" id="video-modal" tabindex="-1" role="dialog" aria-labelledby="video-modal-label" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="video-modal-label">Video Player</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <video class="video-player" width="100%" height="auto" controls>
+              <source src="" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <script>
+      $(function() {
+        $('#video-modal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // Button that triggered the modal
+          var videoUrl = button.data('video-url') // Extract info from data-* attributes
+          var modal = $(this)
+          modal.find('.video-player').attr('src', videoUrl)
+        })
+      });
+    </script> {% endcomment %}
+{% endblock content %}

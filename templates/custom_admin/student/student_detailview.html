@@ -1,0 +1,108 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %}Student details{% endblock title %}
+
+{% block content %}
+
+<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" >Update Student</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+ </div>
+
+    
+
+</div>
+</div>
+
+<div class="content_wrapper scroll"> 
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="main_head">Student Detail:</h1>
+            <a href="{% url 'update-student' student.id %}"
+            class="d-none d-sm-inline-block btn btn-same-add"
+          > Update Student</a>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-md-4 mb-4">
+              <form>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="name">Student Name:</label>
+                            <input type="text" class="form-control" id="name" value="{{ student.user.name }}"readonly>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="Number">Mobile Number:</label>
+                            <input type="text" class="form-control" id="Number" value="{{ student.user.contact }} "readonly>
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="Email">Email:</label>
+                          <input type="text" class="form-control" id="Email" value="{{ student.user.email }}" readonly>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="input">Qualification</label>
+                            <input type="text" class="form-control" id="input" value="{{ student.highest_qualification }}" readonly>
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="Number">Category</label>
+                                <input type="text" class="form-control" id="Number" value="{{ student.category }}" readonly>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="inputAddress">Local Address</label>
+                                <input type="text" class="form-control" id="inputAddress" value="{{ student.local_address }}" readonly>
+                              </div>
+                            </div>
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="address">Permanent Address</label>
+                                <input type="text" class="form-control" id="address" value="{{ student.permanent_address }}" readonly>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="inputAddress">Father's Name</label>
+                                <input type="text" class="form-control" id="inputAddress" value="{{ student.father_name }}" readonly>
+                              </div>
+                            </div>
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="address2">Father's Mobile Number</label>
+                                <input type="text" class="form-control" id="address2" value="{{ student.father_mobile_number }}" readonly>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="enrolledcourse">Enrolled Course</label>
+                                <input type="text" class="form-control" id="enrolledcourse" value="{% for student in student.enrolled_course.all %} {{student}}, {% endfor %}" readonly>
+                              </div>
+                            </div>    
+
+                            <div class="form-row">
+                              <div class="form-group col-md-6">
+                                  <label for="address2">Username</label>
+                                  <input type="text" class="form-control" id="address2" value="{{ student.user.username }}" readonly>
+                                </div>
+                                
+                              </div>    
+
+              </form>
+                   
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock content %}

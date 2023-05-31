@@ -1,0 +1,85 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %}Enquiry Forms Detail View{% endblock title %}
+
+{% block content %}
+
+
+
+<div class="content_wrapper scroll">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="main_head">Enquiries Detail</h1>
+            {% if enquiry.priority != 'Paid' %}
+              <a href="{% url 'enquiryforms_update' enquiry.pk %}" class="d-none d-sm-inline-block btn btn-same-add">
+              Update Enquiry</a>
+            {% endif %}
+        </div>
+
+        <div class="row">
+          <div class="col-xl-12 col-md-4 mb-4">
+            <form method="post">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Name</label>
+                    <input type="text" class="form-control" id="inputEmail4" value="{{ enquiry.name }}" readonly>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="input">Mobile Number</label>
+                    <input type="text" class="form-control" id="inputPassword4" value="{{ enquiry.mobile_number }}" readonly>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" class="form-control" id="inputEmail4" value="{{ enquiry.email }}" readonly>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="input">Highest Qualification</label>
+                    <input type="text" class="form-control" id="inputAddress" value="{{ enquiry.highest_qualification }}" readonly>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputAddress">Category</label>
+                        <input type="text" class="form-control" id="inputEmail4" value="{{ enquiry.category }}" readonly>
+                      </div>
+
+                      <div class="form-group col-md-6">
+                        <label for="inputAddress">Priority</label>
+                        <input type="text" class="form-control" id="inputEmail4" value="{{ enquiry.priority }}" readonly>
+                    </div>
+
+
+
+                </div>
+
+
+
+                <div class="form-row">
+
+
+                  <div class="form-group col-md-6">
+                    <label for="inputAddress">Comment</label>
+                    <textarea class="form-control" id="inputEmail4" rows="2" readonly>{{ enquiry.comment }}</textarea>
+                  </div>
+
+                </div>
+
+
+
+
+
+
+
+
+            </form>    
+          </div>
+      </div>
+    </div>
+     </div>
+{% endblock content %}

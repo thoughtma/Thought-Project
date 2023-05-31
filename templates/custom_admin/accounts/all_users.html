@@ -1,0 +1,228 @@
+{% extends 'custom_admin/base.html' %} {% load static %} {% block title %}All
+Users{% endblock title %} {% block content %}
+
+<div
+  class="modal fade modal-student new-user-modal"
+  id="modalContactForm"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add New User</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body mx-3">
+        <!-- <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input type="text" class="form-control" id="inputEmail4" placeholder="Name">
+          </div>
+          <div class="form-group col-md-6">
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Mobile Number">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+          </div>
+          <div class="form-group col-md-6">
+            <input type="text" class="form-control" id="inputPassword4" placeholder="Add Permission">
+          </div>
+        </div>
+
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Password">
+          </div>
+
+          <div class="form-group col-md-6">
+            <input type="text" class="form-control" id="inputPassword4" placeholder="Confirm Password">
+          </div>
+        </div>
+        </div>
+    <div class="modal-footer d-flex justify-content-center">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      <button type="submit" class="btn btn-primary">Add New user</button>
+    </form> -->
+    <div class="form-detail">
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div class="form-group">
+          <label for="groups">Add Permission :</label>
+          <select class="form-control" name="groups" id="groups" multiple>
+            <option value="Students">Students</option>
+            <option value="Trainers">Trainers/Instructors</option>
+            <option value="Courses">Courses</option>
+            <option value="EnquiryForm">Enquires Form</option>
+            <option value="Queries">Queries</option>
+            <option value="Reviews">Reviews</option>
+            <option value="Users">Users</option>
+          </select>
+          </div>
+          <input onclick="myFunction()" type="submit" class="d-none d-sm-inline-block btn btn-same-add" value="Add User" />
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Begin Page Content -->
+<div class="content_wrapper scroll">
+  <div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="main_head">All Users</h1>
+      <a
+        href="#"
+        class="d-none d-sm-inline-block btn btn-same-add"
+        data-toggle="modal"
+        data-target="#modalContactForm"
+        >Add User</a
+      >
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-md-6 mb-4">
+        <div class="table-responsive table_same_div">
+          <table id="example" class="display" style="width: 100%">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">S. No.</th>
+                <th scope="col">Users Name</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Email</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Action</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user_data in users %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ user_data.name }}</td>
+                <td>{{ user_data.contact }}</td>
+                <td>{{ user_data.email }}</td>
+                <td>{{ user_data.designation }}</td>
+                <td>
+                  <ul class="action_tab_list">
+                    <li>
+                      <a
+                        href="{% url 'user_detail_view' user_data.id %}"
+                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                        ><i class="fas fa-eye fa-sm text-white-50"></i
+                      ></a>
+                    </li>
+                    <!-- <li>
+                      <a
+                        href="{% url 'user_update' user_data.id%}"
+                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                        ><i class="fas fa-edit fa-sm text-white-50"></i
+                      ></a>
+                    </li> -->
+                    <li> <a href="{% url 'user-delete' user_data.id %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                      data-toggle="modal" data-target="#confirmDeleteModal{{user_data.id}}">
+                      <i class="fas fa-trash fa-sm text-white-50"></i>
+                    </a></li>
+
+                    <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#confirmChangeStatusModal{{ user_data.id }}">
+                      {% if user_data.is_active %}
+                        <i class="fas fa-user-check"></i>
+                      {% else %}
+                        <i class="fas fa-user-alt-slash"></i>
+                      {% endif %}
+                    </a> -->
+                  </ul>
+                </td>
+                <td>
+                  <a href="#" class="d-none d-sm-inline-block " data-toggle="modal" data-target="#confirmChangeStatusModal{{ user_data.id }}">
+                    {% if user_data.is_active %}
+                      {% comment %} <i class="fas fa-user-check"></i> <!-- Original icon --> {% endcomment %}
+                      <button type="button" class="btn btn-active">Active</button>
+                    {% else %}
+                      {% comment %} <i class="fas fa-user-alt-slash"></i> <!-- New icon when status is deactivated --> {% endcomment %}
+
+                      <button type="button" class="btn btn-deactive">Inactive</button>
+                  {% endif %}
+                  </a>
+                </td>
+
+              </tr>
+
+
+                        <!-- Begin Delete Popup -->
+                        <div class="modal fade" id="confirmDeleteModal{{user_data.id}}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <p>Are you sure you want to delete this User?</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <a href="{% url 'user-delete' user_data.id %}" class="btn btn-danger">Delete</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                                                      <!-- Change Status Confirmation Modal -->
+                  <div class="modal fade" id="confirmChangeStatusModal{{ user_data.id }}" tabindex="-1" role="dialog" aria-labelledby="confirmChangeStatusModalLabel{{ user_data.id }}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="confirmChangeStatusModalLabel{{ user_data.id }}">Confirm Change Status</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Are you sure you want to {% if user_data.is_active %}deactivate{% else %}activate{% endif %} this User?
+                          </p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <a href="{% url 'change-user-status' user_data.id %}" class="btn btn-primary">
+                            Confirm
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function myFunction() {
+    alert("User Added Succesfully!");
+  }
+  </script>
+{% endblock content %}
+

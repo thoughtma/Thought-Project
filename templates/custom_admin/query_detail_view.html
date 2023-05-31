@@ -1,0 +1,113 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %}QueryView{% endblock title %}
+
+{% block content %}
+
+<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" >Update Trainer/Infffstructor</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    {% comment %} <div class="modal-body  mx-3">
+        <form action="" method="post">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" value="{{ form.specialization }}" >
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="Number">Mobile Number:</label>
+                <input type="text" class="form-control" id="Number" value="{{ form.user.contact }} " />
+              </div>
+            </div>
+    
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="Email">Email :</label>
+                <input type="text" class="form-control" id="Email" value="{{ form.user.email }} " />
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="text">Specialization: </label>
+                <input type="text" class="form-control" id="text" value="{{ form.specialization }} " />
+              </div>
+            </div>
+    
+            
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="email" class="form-control" id="inputEmail4" placeholder="Password">
+              </div>
+    
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="inputPassword4" placeholder="Confirm Password">
+              </div>
+            </div>
+            </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div> {% endcomment %}
+  </div>
+</div>
+</div>
+
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Query Detail:</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-md-4 mb-4">
+                <div class=" table-responsive py-5 px-5">
+                    <form>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="name">Student:</label>
+                            <input type="text" class="form-control" id="name" value="{{ query.student.user }} "readonly>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="Number">Syllabus:</label>
+                            <input type="text" class="form-control" id="Number" value="{{query.syllabus.course_name}}"readonly>
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="Email">Quiry Headline:</label>
+                          <input type="text" class="form-control" id="Email" value="{{query.query_headline}}" readonly>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="input">Query</label>
+                            <input type="text" class="form-control" id="input" value="{{query.query}}" readonly>
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="Number">Respnose</label>
+                                <input type="text" class="form-control" id="Number" value="{{ query.response }}" readonly>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="inputAddress">Respnose By</label>
+                                <input type="text" class="form-control" id="inputAddress" value="{{query.response_by.user}}" readonly>
+                              </div>
+                            </div>
+                            </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

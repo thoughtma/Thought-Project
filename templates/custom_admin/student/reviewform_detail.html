@@ -1,0 +1,47 @@
+{% extends 'custom_admin/base.html' %}
+{% load static %}
+{% block title %}Review Forms Detail View{% endblock title %}
+
+{% block content %}
+
+
+
+
+    <!-- Begin Page Content -->
+  <div class="content_wrapper scroll"> 
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="main_head">Reviews Detail</h1>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-12 col-md-4 mb-4">
+                  <form method="post">
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">Student Name</label>
+                          <input type="text" class="form-control" id="inputEmail4" value="{{ review.student.user.name}}" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="input">Course</label>
+                          <input type="text" class="form-control" id="inputPassword4" value="{{ review.course }}" readonly>
+                        </div>
+                      </div>
+
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                          <label for="inputEmail4">Rating</label>
+                          <input type="email" class="form-control" id="inputEmail4" value="{{ review.rating }}" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="input">Comment</label>
+                          <textarea class="form-control" id="inputEmail4" rows="4" id="inputAddress" readonly>{{ review.comment }}</textarea>
+                        </div>
+                      </div>
+            </form>
+          </div>
+      </div>
+    </div>
+    </div>
+{% endblock content %}
